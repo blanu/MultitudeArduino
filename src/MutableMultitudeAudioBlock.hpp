@@ -1,8 +1,9 @@
-#ifndef _MULTITUDE_AUDIO_BLOCK_H_
-#define _MULTITUDE_AUDIO_BLOCK_H_
+#ifndef _MUTABLE_MULTITUDE_AUDIO_BLOCK_H_
+#define _MUTABLE_MULTITUDE_AUDIO_BLOCK_H_
 
 #include <AudioStream.h>
 #include "MutableMultitude.hpp"
+#include "MutableMultitudeInt.hpp"
 
 class MutableMultitudeAudioBlock: MutableMultitude
 {
@@ -11,8 +12,9 @@ class MutableMultitudeAudioBlock: MutableMultitude
 
     int length();
     bool getInt(int index, int *result);
+
     bool becomeSetInt(int index, int newValue);
-    void becomeMultiply(MutableMultitude *other);
+    void becomeMultiply(MutableMultitudeInt *other);
 
 private:
     audio_block_t *block;

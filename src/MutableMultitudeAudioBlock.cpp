@@ -1,6 +1,4 @@
-#include "AudioStream.h"
 #include "MutableMultitudeAudioBlock.hpp"
-#include "MutableMultitudeInt.hpp"
 
 int MutableMultitudeAudioBlock::length()
 {
@@ -29,7 +27,7 @@ bool MutableMultitudeAudioBlock::becomeSetInt(int index, int newValue)
     return true;
 }
 
-void MutableMultitudeAudioBlock::becomeMultiply(MutableMultitude *other)
+void MutableMultitudeAudioBlock::becomeMultiply(MutableMultitudeInt *other)
 {
     if (other->length() == 0)
     {

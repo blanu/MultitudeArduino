@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include "AudioStream.h"
 #include "MutableMultitudeInt.hpp"
 
 int MutableMultitudeInt::length()
@@ -40,7 +39,7 @@ void MutableMultitudeInt::becomeMultiply(MutableMultitudeInt *other)
     int a=0;
     int b=0;
     int result=0;
-    for(int index = 0 ; index <= AUDIO_BLOCK_SAMPLES ; index++)
+    for(int index = 0 ; index <= this->length() ; index++)
     {
         if (!this->getInt(index, &a))
         {
@@ -112,6 +111,29 @@ MutableMultitudeInt *MutableMultitudeInt::replicate(MutableMultitudeInt *selecto
         }
 
         for(int count = 0; count < total; count++)
+        {
+            result->becomeSetInt(outputIndex, value);
+            outputIndex++;
+        }
+    }
+
+    return result;
+}
+
+MutableMultitudeInt *MutableMultitudeInt::replicate(int repeats)
+{
+    int size = this->length() * repeats;
+    MutableMultitudeInt *result = new MutableMultitudeInt(size);
+    int outputIndex = 0;
+    int value = 0;
+    for (int index = 0; index < this->length(); index++)
+    {
+        if (!this->getInt(index, &value))
+        {
+            return result;
+        }
+
+        for (int count = 0; count < repeats; count++)
         {
             result->becomeSetInt(outputIndex, value);
             outputIndex++;
